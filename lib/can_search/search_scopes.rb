@@ -107,6 +107,7 @@ module CanSearch
     def scope_for(finder, options = {})
       value, values = options.delete(@singular_name), options.delete(@name) || []
       values << value if value
+      values = [] unless values.is_a?(Array)
       return finder if values.empty?
       finder.send(@named_scope, values.size == 1 ? values.first : values)
     end
